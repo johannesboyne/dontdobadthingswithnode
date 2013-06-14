@@ -50,10 +50,10 @@ This is just an approach, a test how to make an automated testing system to find
 ### Key "suspicious code" indicators
 
 * The `value` of a key inside the script-object is longer than `80` characters
-* * example: `node runmyprettylongjs.withsubname.js -flag 1 -flag 2 -flag 3 -flag 4 -flag 5 -n` thats still OK but anything longer than that is *suspicious* and should be checked.
+ * example: `node runmyprettylongjs.withsubname.js -flag 1 -flag 2 -flag 3 -flag 4 -flag 5 -n` thats still OK but anything longer than that is *suspicious* and should be checked.
 * Unix / Win-Shell commands like:
-* * `fdisk` (of cause)
-* * and all from [evil *nix commands](http://www.wiki.darksyndicate.net/index.php?title=Evil_*nix_Commands&printable=yes)
+ * `fdisk` (of cause)
+ * and all from [evil *nix commands](http://www.wiki.darksyndicate.net/index.php?title=Evil_*nix_Commands&printable=yes)
 
 So, for an automatic detection *length* and *suspicious characters* like `/`, `\`, `=/`, `/;`, `*` are indicators. Plus unix system keywords like `cd`, `rm`, `mv`, `cp`, `dd`, `awk`, `chmod` and some others.
 
