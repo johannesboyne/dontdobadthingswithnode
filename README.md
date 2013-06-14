@@ -4,7 +4,7 @@ Node.js as a young technology is great but also great for misuse. Go (!) and sup
 
 # about this repo
 
-Here I am showing misuse to make you (and me) more mindful. It is easy, just look insight the code of others, support projects like the node security project and do good things!
+Here I am showing misuse to make you (and me) more mindful. It is easy, just look inside the code of others, support projects like the node security project and do good things!
 
 Let's dive into some code:
 
@@ -42,3 +42,19 @@ hi, i just started a background http server at your system. You should be patien
 ```
 
 as you can see, I am piping a text string to node, putting the node process into the background and clearing the screen. So, please be mindful and support security projects.
+
+# An auto checking approach
+
+This is just an approach, a test how to make an automated testing system to find suspicious code inside the npm's scripts-object.
+
+### Key "suspicious code" indicators
+
+* The `value` of a key inside the script-object is longer than `80` characters
+* * example: `node runmyprettylongjs.withsubname.js -flag 1 -flag 2 -flag 3 -flag 4 -flag 5 -n` thats still OK but anything longer than that is *suspicious* and should be checked.
+* Unix / Win-Shell commands like:
+* * `fdisk` (of cause)
+* * and all from [evil *nix commands](http://www.wiki.darksyndicate.net/index.php?title=Evil_*nix_Commands&printable=yes)
+
+So, for an automatic detection *length* and *suspicious characters* like `/`, `\`, `=/`, `/;`, `*` are indicators. Plus unix system keywords like `cd`, `rm`, `mv`, `cp`, `dd`, `awk`, `chmod` and some others.
+
+Of cause, some of these commands can be used to do good things. These indicators should just be used to pre-filter package.json files.
